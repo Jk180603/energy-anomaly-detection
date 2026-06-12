@@ -1,0 +1,12 @@
+{
+  "mae": 19.430916965960492,
+  "rmse": 39.160349227324154,
+  "auc_roc": 0.5405023094688222,
+  "feature_cols": [
+    "hour",
+    "day_of_week",
+    "month",
+    "temperature",
+    "occupancy"
+  ]
+}

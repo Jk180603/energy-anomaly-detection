@@ -25,15 +25,15 @@ Request → FastAPI → XGBoost (expected consumption)
 ## Screenshots
 
 ### Grafana Monitoring Dashboard
-![Grafana Dashboard](screenshots/grafana-dashboard.png)
+![Grafana Dashboard](Grafana Dashboard.png)
 
 Live dashboard tracking total predictions, anomaly rate, prediction latency, and predicted energy consumption.
 
 ### FastAPI Swagger UI (running through Kubernetes)
-![FastAPI Docs](screenshots/fastapi-docs.png)
+![FastAPI Docs](fastapi-docs.png)
 
 ### Kubernetes Pods Running
-![Kubernetes Pods](screenshots/k8s-pods.png)
+![Kubernetes Pods](k8s-pods.png)
 
 2 replicas running with health checks passing, served through `kubectl port-forward`.
 

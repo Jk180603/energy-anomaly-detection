@@ -25,7 +25,7 @@ Request → FastAPI → XGBoost (expected consumption)
 ## Screenshots
 
 ### Grafana Monitoring Dashboard
-![Grafana Dashboard](Grafana Dashboard.png)
+![Grafana Dashboard](GrafanaDashboard.png)
 
 Live dashboard tracking total predictions, anomaly rate, prediction latency, and predicted energy consumption.
 

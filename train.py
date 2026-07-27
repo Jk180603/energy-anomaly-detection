@@ -15,12 +15,12 @@ n_samples = 8760
 
 hours       = np.arange(n_samples)
 time_of_day = hours % 24
-day_of_week = (hours // 24) % 7
-month       = (hours // 720) % 12
+day_of_week = (hours // 24) % 7 
+month       = (hours // 720) % 12 #30*24
 
 base = (
     200
-    + 80  * np.sin(2 * np.pi * time_of_day / 24)
+    + 80  * np.sin(2 * np.pi * time_of_day / 24) #adjusting the numbers to get proper sine or real type of values 
     + 30  * np.sin(2 * np.pi * day_of_week / 7)
     + 20  * np.sin(2 * np.pi * month / 12)
     + np.random.normal(0, 15, n_samples)
@@ -82,6 +82,6 @@ joblib.dump(scaler, "models/scaler.joblib")
 import json
 config = {"mae": float(mae), "rmse": float(rmse), "auc_roc": float(auc), "feature_cols": feature_cols}
 with open("models/config.json", "w") as f:
-    json.dump(config, f, indent=2)
+    json.dump(config, f, indent=2) #2 is for nesting readble response
 
 print("\nModels saved. Config:", json.dumps(config, indent=2))

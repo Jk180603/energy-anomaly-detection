@@ -21,9 +21,9 @@ CONSUMPTION_GAUGE = Gauge("predicted_consumption_kwh", "Predicted energy consump
 MODEL_PATH = os.getenv("MODEL_PATH", "./models")
 xgb    = joblib.load(f"{MODEL_PATH}/xgb_forecaster.joblib")
 iso    = joblib.load(f"{MODEL_PATH}/iso_forest.joblib")
-scaler = joblib.load(f"{MODEL_PATH}/scaler.joblib")
+scaler = joblib.load(f"{MODEL_PATH}/scaler.joblib") #loaded scaler
 with open(f"{MODEL_PATH}/config.json") as f:
-    config = json.load(f)
+    config = json.load(f) #opens and loads that file so can be use later by api
 
 anomaly_count = 0
 total_count   = 0
@@ -48,15 +48,15 @@ def root():
 @app.post("/predict", response_model=PredictionResponse)
 def predict(req: PredictionRequest):
     global anomaly_count, total_count
-    start = time.time()
+    start = time.time() #records the time whn this req started
 
     features = np.array([[req.hour, req.day_of_week, req.month,
                           req.temperature, req.occupancy]])
 
     predicted_consumption = float(xgb.predict(features)[0])
     features_scaled       = scaler.transform(features)
-    anomaly_score         = float(-iso.decision_function(features_scaled)[0])
-    is_anomaly            = bool(iso.predict(features_scaled)[0] == -1)
+    anomaly_score         = float(-iso.decision_function(features_scaled)[0])#float to covert response into python number and 0 is sing pre.
+    is_anomaly            = bool(iso.predict(features_scaled)[0] == -1) #fliping the sign to get hgher number
 
     total_count   += 1
     if is_anomaly:
